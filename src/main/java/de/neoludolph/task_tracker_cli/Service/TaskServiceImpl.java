@@ -51,7 +51,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void markDone(long id) {
-
+        try {
+            taskRepository.markTaskAsDone(id);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

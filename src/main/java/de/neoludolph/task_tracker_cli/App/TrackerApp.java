@@ -69,6 +69,14 @@ public class TrackerApp {
                 }
                 taskService.markInProgress(Long.parseLong(args[1]));
                 break;
+            case "mark-done":
+                try {
+                    Long.parseLong(args[1]);
+                } catch (NumberFormatException e) {
+                    System.out.println("\"" + args[1] + "\"" + " is not an id! Please enter a valid id as a number.");
+                }
+                taskService.markDone(Long.parseLong(args[1]));
+                break;
         }
     }
 }

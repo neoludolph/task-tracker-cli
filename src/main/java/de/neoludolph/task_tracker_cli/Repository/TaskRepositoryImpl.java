@@ -155,4 +155,37 @@ public class TaskRepositoryImpl implements TaskRepository {
                 .writerWithDefaultPrettyPrinter()
                 .writeValue(path.toFile(), taskArrayList);
     }
+
+    @Override
+    public void markTaskAsDone(long id) throws IOException {
+        Path path = Path.of("src/main/resources/tasks.json");
+        ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+
+        ArrayList<TaskModel> taskArrayList = objectMapper.readValue(
+                path.toFile(),
+                new TypeReference<ArrayList<TaskModel>>() {}
+        );
+
+        boolean found = false;
+
+        for (int i = 0; i < taskArrayList.size(); i++) {
+            TaskModel currentTaskModel = taskArrayList.get(i);
+            if (currentTaskModel.getId() == id) {
+                currentTaskModel.setStatus(TaskModel.Status.DONE);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            throw new IllegalArgumentException("Update failed: The task with the id \""
+                    + id
+                    + "\""
+                    + " does not exist. "
+                    + "Please check your tasks id's with \"task-cli list\" in order to enter a valid id.");
+        }
+        objectMapper
+                .writerWithDefaultPrettyPrinter()
+                .writeValue(path.toFile(), taskArrayList);
+    }
 }
