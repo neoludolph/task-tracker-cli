@@ -9,4 +9,5 @@ public interface TaskRepository {
     void saveNewTaskInJson(TaskModel task) throws IOException;
     void saveUpdatedTaskInJson(long id, String description) throws IOException;
     void deleteTaskInJson(long id) throws IOException;
+    void markTaskAsInProgress(long id) throws IOException;
 }

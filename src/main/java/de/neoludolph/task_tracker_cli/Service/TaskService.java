@@ -4,8 +4,8 @@ public interface TaskService {
     void add(String description);
     void update(long id, String description);
     void delete(long id);
-    void markInProgress(String mark, long id);
-    void markDone(String mark, long id);
+    void markInProgress(long id);
+    void markDone(long id);
     void listAll();
     void listDone();
     void listToDo();

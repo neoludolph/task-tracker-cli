@@ -41,12 +41,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void markInProgress(String mark, long id) {
-
+    public void markInProgress(long id) {
+        try {
+            taskRepository.markTaskAsInProgress(id);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public void markDone(String mark, long id) {
+    public void markDone(long id) {
 
     }
 
