@@ -78,11 +78,19 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void listToDo() {
-
+        try {
+            taskRepository.listToDoTasks();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void listInProgress() {
-
+        try {
+            taskRepository.listInProgressTasks();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

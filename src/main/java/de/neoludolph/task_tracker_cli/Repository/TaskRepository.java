@@ -13,6 +13,6 @@ public interface TaskRepository {
     void markTaskAsDone(long id) throws IOException;
     void listAllTasks() throws IOException;
     void listDoneTasks() throws IOException;
-//    void listToDoTasks() throws IOException;
-//    void listInProgressTasks() throws IOException;
+    void listToDoTasks() throws IOException;
+    void listInProgressTasks() throws IOException;
 }

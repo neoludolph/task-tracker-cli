@@ -84,6 +84,12 @@ public class TrackerApp {
             case "list-done":
                 taskService.listDone();
                 break;
+            case "list-todo":
+                taskService.listToDo();
+                break;
+            case "list-in-progress":
+                taskService.listInProgress();
+                break;
         }
     }
 }
