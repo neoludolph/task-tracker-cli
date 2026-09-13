@@ -202,7 +202,10 @@ public class TaskRepositoryImpl implements TaskRepository {
 
         StringBuilder stringBuilder = new StringBuilder();
 
+        int i = 0;
+
         for (TaskModel currentTaskModel : taskArrayList) {
+            i += 1;
             stringBuilder
                     .append("\n")
                     .append("Task ")
@@ -226,9 +229,25 @@ public class TaskRepositoryImpl implements TaskRepository {
             stringBuilder
                     .append("Status: ")
                     .append(currentTaskModel.getStatus())
-                    .append("\n\n")
-                    .append("---------------------------------------------------")
-                    .append("\n");
+                    .append("\n\n");
+
+            boolean foundLastTaskInProgress = false;
+
+            ArrayList<TaskModel> nextTaskArrayList = new ArrayList<>();
+
+            for (int j = i; j < taskArrayList.size(); j++) {
+                TaskModel nextTaskModel = taskArrayList.get(j);
+                if (nextTaskModel.getStatus() == TaskModel.Status.DONE) {
+                    nextTaskArrayList.add(nextTaskModel);
+                    foundLastTaskInProgress = true;
+                }
+            }
+
+            if (foundLastTaskInProgress) {
+                stringBuilder
+                        .append("---------------------------------------------------")
+                        .append("\n");
+            }
         }
         System.out.println(stringBuilder);
     }
@@ -246,7 +265,10 @@ public class TaskRepositoryImpl implements TaskRepository {
 
         StringBuilder stringBuilder = new StringBuilder();
 
+        int i = 0;
+
         for (TaskModel currentTaskModel : taskArrayList) {
+            i += 1;
             if (currentTaskModel.getStatus() == TaskModel.Status.DONE) {
                 stringBuilder
                         .append("\n")
@@ -271,9 +293,25 @@ public class TaskRepositoryImpl implements TaskRepository {
                 stringBuilder
                         .append("Status: ")
                         .append(currentTaskModel.getStatus())
-                        .append("\n\n")
-                        .append("---------------------------------------------------")
-                        .append("\n");
+                        .append("\n\n");
+
+                boolean foundLastTaskInProgress = false;
+
+                ArrayList<TaskModel> nextTaskArrayList = new ArrayList<>();
+
+                for (int j = i; j < taskArrayList.size(); j++) {
+                    TaskModel nextTaskModel = taskArrayList.get(j);
+                    if (nextTaskModel.getStatus() == TaskModel.Status.DONE) {
+                        nextTaskArrayList.add(nextTaskModel);
+                        foundLastTaskInProgress = true;
+                    }
+                }
+
+                if (foundLastTaskInProgress) {
+                    stringBuilder
+                            .append("---------------------------------------------------")
+                            .append("\n");
+                }
             }
         }
         if (stringBuilder.isEmpty()) {
@@ -295,7 +333,10 @@ public class TaskRepositoryImpl implements TaskRepository {
 
         StringBuilder stringBuilder = new StringBuilder();
 
+        int i = 0;
+
         for (TaskModel currentTaskModel : taskArrayList) {
+            i += 1;
             if (currentTaskModel.getStatus() == TaskModel.Status.TODO) {
                 stringBuilder
                         .append("\n")
@@ -320,9 +361,25 @@ public class TaskRepositoryImpl implements TaskRepository {
                 stringBuilder
                         .append("Status: ")
                         .append(currentTaskModel.getStatus())
-                        .append("\n\n")
-                        .append("---------------------------------------------------")
-                        .append("\n");
+                        .append("\n\n");
+
+                boolean foundLastTaskInProgress = false;
+
+                ArrayList<TaskModel> nextTaskArrayList = new ArrayList<>();
+
+                for (int j = i; j < taskArrayList.size(); j++) {
+                    TaskModel nextTaskModel = taskArrayList.get(j);
+                    if (nextTaskModel.getStatus() == TaskModel.Status.TODO) {
+                        nextTaskArrayList.add(nextTaskModel);
+                        foundLastTaskInProgress = true;
+                    }
+                }
+
+                if (foundLastTaskInProgress) {
+                    stringBuilder
+                            .append("---------------------------------------------------")
+                            .append("\n");
+                }
             }
         }
         if (stringBuilder.isEmpty()) {
@@ -344,7 +401,10 @@ public class TaskRepositoryImpl implements TaskRepository {
 
         StringBuilder stringBuilder = new StringBuilder();
 
+        int i = 0;
+
         for (TaskModel currentTaskModel : taskArrayList) {
+            i += 1;
             if (currentTaskModel.getStatus() == TaskModel.Status.IN_PROGRESS) {
                 stringBuilder
                         .append("\n")
@@ -369,9 +429,25 @@ public class TaskRepositoryImpl implements TaskRepository {
                 stringBuilder
                         .append("Status: ")
                         .append(currentTaskModel.getStatus())
-                        .append("\n\n")
-                        .append("---------------------------------------------------")
-                        .append("\n");
+                        .append("\n\n");
+
+                boolean foundLastTaskInProgress = false;
+
+                ArrayList<TaskModel> nextTaskArrayList = new ArrayList<>();
+
+                for (int j = i; j < taskArrayList.size(); j++) {
+                    TaskModel nextTaskModel = taskArrayList.get(j);
+                    if (nextTaskModel.getStatus() == TaskModel.Status.IN_PROGRESS) {
+                        nextTaskArrayList.add(nextTaskModel);
+                        foundLastTaskInProgress = true;
+                    }
+                }
+
+                if (foundLastTaskInProgress) {
+                    stringBuilder
+                            .append("---------------------------------------------------")
+                            .append("\n");
+                }
             }
         }
         if (stringBuilder.isEmpty()) {
