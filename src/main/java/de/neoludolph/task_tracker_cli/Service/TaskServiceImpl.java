@@ -69,7 +69,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void listDone() {
-
+        try {
+            taskRepository.listDoneTasks();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -16,21 +16,22 @@ public class TrackerApp {
                 && !(args[0].equals("mark-in-progress"))
                 && !(args[0].equals("mark-done"))
                 && !(args[0].equals("list"))
-                && !(args[0].equals("list done"))
-                && !(args[0].equals("list todo"))
-                && !(args[0].equals("list in-progress")))
+                && !(args[0].equals("list-done"))
+                && !(args[0].equals("list-todo"))
+                && !(args[0].equals("list-in-progress")))
         {
-            throw new IllegalArgumentException("Please enter a valid operation!"
-            + " Valid operations:\n"
-            + "\tadd\n"
-            + "\tupdate\n"
-            + "\tdelete\n"
-            + "\tmark-in-progress\n"
-            + "\tmark-done\n"
-            + "\tlist\n"
-            + "\tlist done\n"
-            + "\tlist todo\n"
-            + "\tlist in-progress");
+            throw new IllegalArgumentException("""
+                    Please enter a valid operation!\
+                     Valid operations:
+                    \tadd
+                    \tupdate
+                    \tdelete
+                    \tmark-in-progress
+                    \tmark-done
+                    \tlist
+                    \tlist-done
+                    \tlist-todo
+                    \tlist-in-progress""");
         }
 
         switch (args[0]) {
@@ -79,6 +80,10 @@ public class TrackerApp {
                 break;
             case "list":
                 taskService.listAll();
+                break;
+            case "list-done":
+                taskService.listDone();
+                break;
         }
     }
 }
