@@ -28,24 +28,24 @@ public class TaskRepositoryImpl implements TaskRepository {
         ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
-        ArrayList<TaskModel> al = objectMapper.readValue(
+        ArrayList<TaskModel> taskArrayList = objectMapper.readValue(
                 path.toFile(),
                 new TypeReference<ArrayList<TaskModel>>() {}
         );
 
-        if (al.isEmpty()) {
+        if (taskArrayList.isEmpty()) {
             task.setId(0);
-            al.add(task);
+            taskArrayList.add(task);
             objectMapper
                 .writerWithDefaultPrettyPrinter()
-                .writeValue(path.toFile(), al);
+                .writeValue(path.toFile(), taskArrayList);
         } else {
-            TaskModel lastTask = al.getLast();
+            TaskModel lastTask = taskArrayList.getLast();
             task.setId(lastTask.getId() + 1);
-            al.add(task);
+            taskArrayList.add(task);
             objectMapper
                 .writerWithDefaultPrettyPrinter()
-                .writeValue(path.toFile(), al);
+                .writeValue(path.toFile(), taskArrayList);
         }
     }
 
@@ -55,7 +55,7 @@ public class TaskRepositoryImpl implements TaskRepository {
         ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
-        ArrayList<TaskModel> al = objectMapper.readValue(
+        ArrayList<TaskModel> taskArrayList = objectMapper.readValue(
                 path.toFile(),
                 new TypeReference<ArrayList<TaskModel>>() {}
         );
@@ -64,8 +64,8 @@ public class TaskRepositoryImpl implements TaskRepository {
 
             boolean found = false;
 
-            for (int i = 0; i < al.size(); i++) {
-                TaskModel currentTaskModel = al.get(i);
+            for (int i = 0; i < taskArrayList.size(); i++) {
+                TaskModel currentTaskModel = taskArrayList.get(i);
                 if (currentTaskModel.getId() == id) {
                     currentTaskModel.setUpdatedAt(LocalDateTime.now());
                     currentTaskModel.setDescription(description);
@@ -82,7 +82,7 @@ public class TaskRepositoryImpl implements TaskRepository {
             }
             objectMapper
                     .writerWithDefaultPrettyPrinter()
-                    .writeValue(path.toFile(), al);
+                    .writeValue(path.toFile(), taskArrayList);
         } catch (FileNotFoundException e) {
             System.out.println("Update failed: You have to create a task first!");
         } catch (IOException e) {
