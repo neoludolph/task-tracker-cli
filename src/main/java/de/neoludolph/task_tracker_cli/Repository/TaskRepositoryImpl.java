@@ -61,18 +61,24 @@ public class TaskRepositoryImpl implements TaskRepository {
         );
 
         try {
+
+            boolean found = false;
+
             for (int i = 0; i < al.size(); i++) {
                 TaskModel currentTaskModel = al.get(i);
                 if (currentTaskModel.getId() == id) {
                     currentTaskModel.setUpdatedAt(LocalDateTime.now());
                     currentTaskModel.setDescription(description);
-                } else if (i == al.size() - 1 && currentTaskModel.getId() != id) {
-                    throw new IllegalArgumentException("Update failed: The task with the id \""
-                            + id
-                            + "\""
-                            + " does not exist. "
-                            + "Please check your tasks id's with \"task-cli list\" in order to enter a valid id.");
+                    found = true;
                 }
+            }
+
+            if (!found) {
+                throw new IllegalArgumentException("Update failed: The task with the id \""
+                        + id
+                        + "\""
+                        + " does not exist. "
+                        + "Please check your tasks id's with \"task-cli list\" in order to enter a valid id.");
             }
             objectMapper
                     .writerWithDefaultPrettyPrinter()
