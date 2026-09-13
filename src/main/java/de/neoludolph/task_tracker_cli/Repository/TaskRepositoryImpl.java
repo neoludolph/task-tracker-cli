@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import de.neoludolph.task_tracker_cli.Model.TaskModel;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,7 +36,6 @@ public class TaskRepositoryImpl implements TaskRepository {
         if (al.isEmpty()) {
             task.setId(0);
             al.add(task);
-
             objectMapper
                 .writerWithDefaultPrettyPrinter()
                 .writeValue(path.toFile(), al);
@@ -44,7 +43,6 @@ public class TaskRepositoryImpl implements TaskRepository {
             TaskModel lastTask = al.getLast();
             task.setId(lastTask.getId() + 1);
             al.add(task);
-
             objectMapper
                 .writerWithDefaultPrettyPrinter()
                 .writeValue(path.toFile(), al);
@@ -68,13 +66,19 @@ public class TaskRepositoryImpl implements TaskRepository {
                 if (currentTaskModel.getId() == id) {
                     currentTaskModel.setUpdatedAt(LocalDateTime.now());
                     currentTaskModel.setDescription(description);
+                } else if (i == al.size() - 1 && currentTaskModel.getId() != id) {
+                    System.out.println("Update failed: The task with the id \""
+                            + id
+                            + "\""
+                            + " does not exist. "
+                            + "Please check your tasks id's with \"task-cli list\" in order to enter a valid id.");
                 }
             }
             objectMapper
                     .writerWithDefaultPrettyPrinter()
                     .writeValue(path.toFile(), al);
-        } catch (NoSuchFileException e) {
-            System.out.println("You have to create a task first!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Update failed: You have to create a task first!");
         } catch (IOException e) {
             throw new RuntimeException();
         }
