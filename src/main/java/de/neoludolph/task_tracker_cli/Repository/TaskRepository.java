@@ -11,4 +11,5 @@ public interface TaskRepository {
     void deleteTaskInJson(long id) throws IOException;
     void markTaskAsInProgress(long id) throws IOException;
     void markTaskAsDone(long id) throws IOException;
+    void listAllTasks() throws IOException;
 }

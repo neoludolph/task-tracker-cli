@@ -77,6 +77,8 @@ public class TrackerApp {
                 }
                 taskService.markDone(Long.parseLong(args[1]));
                 break;
+            case "list":
+                taskService.listAll();
         }
     }
 }
