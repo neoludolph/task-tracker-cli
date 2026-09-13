@@ -45,9 +45,12 @@ public class TrackerApp {
                 if (!(args[2] instanceof String)) {
                     throw new IllegalArgumentException("Please enter your task within quotation marks, for example: "
                     + "\"Buy groceries and cook dinner\"");
-                } /*else if (!(args[1] instanceof Long)) {
-
-                }*/
+                }
+                try {
+                    Long.parseLong(args[1]);
+                } catch (NumberFormatException e) {
+                    System.out.println("\"" + args[1] + "\"" + " is not an id! Please enter a valid id as a number.");
+                }
                 taskService.update(Long.parseLong(args[1]), args[2]);
                 break;
             case "delete":
