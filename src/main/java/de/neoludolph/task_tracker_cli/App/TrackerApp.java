@@ -54,6 +54,11 @@ public class TrackerApp {
                 taskService.update(Long.parseLong(args[1]), args[2]);
                 break;
             case "delete":
+                try {
+                    Long.parseLong(args[1]);
+                } catch (NumberFormatException e) {
+                    System.out.println("\"" + args[1] + "\"" + " is not an id! Please enter a valid id as a number.");
+                }
                 taskService.delete(Long.parseLong(args[1]));
                 break;
         }
