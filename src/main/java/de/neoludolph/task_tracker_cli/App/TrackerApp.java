@@ -45,8 +45,13 @@ public class TrackerApp {
                 if (!(args[2] instanceof String)) {
                     throw new IllegalArgumentException("Please enter your task within quotation marks, for example: "
                     + "\"Buy groceries and cook dinner\"");
-                }
+                } /*else if (!(args[1] instanceof Long)) {
+
+                }*/
                 taskService.update(Long.parseLong(args[1]), args[2]);
+                break;
+            case "delete":
+                taskService.delete(Long.parseLong(args[1]));
                 break;
         }
     }

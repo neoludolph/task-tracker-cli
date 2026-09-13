@@ -25,7 +25,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void update(long id, String description) {
         try {
-            taskRepository.saveUpdatedTaskJson(id, description);
+            taskRepository.saveUpdatedTaskInJson(id, description);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -33,7 +33,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void delete(long id) {
-
+        try {
+            taskRepository.deleteTaskInJson(id);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

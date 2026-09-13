@@ -7,5 +7,6 @@ import java.io.IOException;
 public interface TaskRepository {
     void loadJson() throws IOException;
     void saveNewTaskInJson(TaskModel task) throws IOException;
-    void saveUpdatedTaskJson(long id, String description) throws IOException;
+    void saveUpdatedTaskInJson(long id, String description) throws IOException;
+    void deleteTaskInJson(long id) throws IOException;
 }
