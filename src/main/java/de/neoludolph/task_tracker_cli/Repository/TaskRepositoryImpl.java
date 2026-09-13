@@ -67,7 +67,7 @@ public class TaskRepositoryImpl implements TaskRepository {
                     currentTaskModel.setUpdatedAt(LocalDateTime.now());
                     currentTaskModel.setDescription(description);
                 } else if (i == al.size() - 1 && currentTaskModel.getId() != id) {
-                    System.out.println("Update failed: The task with the id \""
+                    throw new IllegalArgumentException("Update failed: The task with the id \""
                             + id
                             + "\""
                             + " does not exist. "
