@@ -1,6 +1,5 @@
-package de.neoludolph.task_tracker_cli;
+package de.neoludolph.task_tracker_cli.Model;
 
-import de.neoludolph.task_tracker_cli.Model.TaskModel;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
