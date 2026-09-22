@@ -17,7 +17,9 @@ pipeline {
         }
 
         stage('Create JAR') {
-            sh 'mvn package -DskipTests'
+            steps {
+                sh 'mvn package -DskipTests'
+            }
         }
     }
 
