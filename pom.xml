@@ -4,7 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <!-- sollte mit Main-Package übereinstimmen, damit andere über groupId und artefactId die Jar einbinden können -->
+    <groupId>de.neoludolph</groupId>
     <artifactId>task-tracker-cli</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -45,9 +46,11 @@
     </dependencies>
 
     <build>
-        <finalName>task-tracker-cli</finalName>
+        <!-- oben definiert -->
+        <finalName>${project.artifactId}-v${project.version}</finalName>
         <plugins>
             <plugin>
+                <!-- nötig für Fat-JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.5.2</version>
