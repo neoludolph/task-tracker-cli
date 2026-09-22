@@ -3,8 +3,6 @@ package de.neoludolph.task_tracker_cli.App;
 import de.neoludolph.task_tracker_cli.Repository.TaskRepositoryImpl;
 import de.neoludolph.task_tracker_cli.Service.TaskServiceImpl;
 
-import java.util.Set;
-
 public class TrackerApp {
 
     public static void startApp(String[] args) {
