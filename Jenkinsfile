@@ -25,10 +25,10 @@ pipeline {
 
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
+            junit '**/target/surefire-reports/*.xml' // wird immer ausgeführt: Testergebnisse von JUnit werden unter /target abgelegt -> Weist Jenkins darauf hin, diese einzulesen, um Diagramme zu generieren
         }
         success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true // legt .jar-Dateien im Jenkins Server ab, sofern Build erfolgreich
         }
     }
 }
